@@ -1,23 +1,19 @@
 class Game < ActiveRecord::Base
-  has_many :playings, dependent: :destroy
-  has_many :teams, through: :playings
+
+  has_and_belongs_to_many :teams, joint_table: :teams_games
   
-    
-  scope :playing_currently, ->(time){where("end_time >= ? and start_time <= ?", time, time)}
-  scope :playing_before, ->(time) {where("end_time < ?", time)}
-  scope :playing_after, ->(time) {where("start_time > ?", time)}
+  validates :name, :start_time, presence: true
   
+  Now = Time.now
+
+  scope :history_current_games, -> { where("start_time <= ?", Now).order(start_time: :desc) }
+  scope :future_games, -> { where("start_time > ?", Now) }
   
-  #define 3 macro class methods: games played currently, before and in the future
   def self.current_games
-    playing_currently(Time.zone.now)
+    history_current_games.where(result: "")
   end
   
   def self.history_games
-    playing_before(Time.zone.now)
-  end
-  
-  def self.future_games
-    playing_after(Time.zone.now)
+    history_current_games.where("end_time <= ?", Now)
   end
 end

@@ -18,20 +18,20 @@ Game.create(
   
 },
 {:name=>'Baseball', 
-:start_time=>'2015-09-21 13:00:00', 
-:end_time=>'2015-09-21 14:00:00', 
+:start_time=>'2015-10-8 13:00:00', 
+:end_time=>'2015-10-8 14:00:00', 
 :result=>''
   
 },
 {:name=>'Baseball', 
-:start_time=>'2015-09-21 14:00:00', 
-:end_time=>'2015-09-21 15:00:00', 
+:start_time=>'2015-10-8 14:00:00', 
+:end_time=>'2015-10-8 15:00:00', 
 :result=>''
   
 },
 {:name=>'Baseball', 
-:start_time=>'2015-09-21 16:00:00', 
-:end_time=>'2015-09-21 17:00:00', 
+:start_time=>'2015-10-8 16:00:00', 
+:end_time=>'2015-10-8 17:00:00', 
 :result=>''
   
 }]

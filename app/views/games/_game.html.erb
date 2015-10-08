@@ -1,0 +1,14 @@
+<tr>
+	<% cache game do %>
+		<td><%= game.name %></td>
+		<td><%= l game.start_time, :format=>:date_format %></td>
+		<td><%= l game.end_time, :format=>:date_format %></td>
+		<td> <% game.teams.each do |team| %>
+			<%= team.name %>
+			<br/>
+			<% end %> 
+		</td>
+		<td> <%= game.result%> </td>
+	<% end %>
+
+</tr>

@@ -1,97 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Games to play: </h3>
+<% cache cache_key_for_games do %>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Start time</th>
+	      <th>End time</th>
+	      <th>Teams</th>
+	      <th colspan="3"></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<h3>Games to play: </h3>
+	
+	    	<%= render partial: "game", collection: @future_games, as: :game %>
+	 
+	  </tbody>
+	  </table>
+	  <table class="table">
+	  	<thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Start time</th>
+		      <th>End time</th>
+		      <th>Teams</th>
+		      <th>Result</th>
+		      <th colspan="4"></th>
+		    </tr>
+	  	</thead>
+	  <h3>Currently Playing games</h3>
+	   <tbody>
+	
+		  <%= render partial: "game", collection: @current_games, as: :game %>
+	
+	  </tbody> 
+	  </table>
+	  <table class="table">
+	  <h3>History games</h3>
+	  <tbody>
+	
+	  	  <%= render partial: "game", collection: @history_games, as: :game %>
+	
+	  </tbody>
+	
+	</table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Teams</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @future_games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= l game.start_time, :format=>:date_format %></td>
-        <td><%= l game.end_time, :format=>:date_format %></td>
-        <td>
-        	<% game.teams.each do |team| %>
-        		<%= team.name %><br/>
-        	<% end %>
-        </td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h3>Currently Playing games</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Teams</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @currently_play_games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= l game.start_time, :format=>:date_format %></td>
-        <td><%= l game.end_time, :format=>:date_format %></td>
-        <td>
-        	<% game.teams.each do |team| %>
-        		<%= team.name %><br/>
-        	<% end %>
-        </td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
- <h3>History games</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Teams</th>
-      <th>Result</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @previous_games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= l game.start_time, :format=>:date_format %></td>
-        <td><%= l game.end_time, :format=>:date_format %></td>
-        <td>
-        	<% game.teams.each do |team| %>
-        		<%= team.name %><br/>
-        	<% end %>
-        </td>
-		<td>
-			<%= game.result%>
-		</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% end %>
 <br>
 
-<%= link_to 'New Game', new_game_path %>

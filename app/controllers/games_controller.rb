@@ -5,8 +5,8 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @currently_play_games = Game.current_games
-    @previous_games = Game.history_games
+    @current_games = Game.current_games
+    @history_games = Game.history_games
     @future_games = Game.future_games
     # @games = Game.all
     
